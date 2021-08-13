@@ -1,4 +1,5 @@
-import { getAuthors, getRecipients, getTopics, sendLetter } from "./dataAccess.js"
+import { getRecipients, getTopics, sendLetter } from "./dataAccess.js"
+import { Authors } from "./Authors.js"
 
 const mainContainer = document.querySelector("#container")
 
@@ -7,7 +8,7 @@ mainContainer.addEventListener(
     clickEvent => {
         if (clickEvent.target.id === "sendLetter") {
             const UserAuthorName = document.querySelector("option[name='author']").value
-            const UserLetter = document.querySelector("textarea[name='letterText']")
+            const UserLetter = document.querySelector("textarea[name='letterText']").value
             const UserTopic = document.querySelector("input[name='topic']").value
             const UserRecipient = document.querySelector("option[name='recipient']").value
 
@@ -26,36 +27,31 @@ mainContainer.addEventListener(
 
 
 
-const authors = getAuthors()
-const topics = getTopics()
-const recipients = getRecipients()
 
-const topicOptionsHTML = topics.map(topic => {
-    return `
+
+export const LetterForm = () => {
+    const recipients = getRecipients()
+    const topics = getTopics()
+    
+    const topicOptionsHTML = topics.map(topic => {
+        return `
         <ul class="topics ul--options">
         <li class="topic">
         <input type="radio" name="topic" value="${topic.id}"/>${topic.typeOfTopic}
         </li>
         `
-}).join("")
-
-const authorsHTML = authors.map(author => {
-    return `<option name="author" value="${author.id}">${author.name}</option>`
-})
-
-const recipientsHTML = recipients.map(recipient => {
-    return `<option name="recipient" value="${recipient.id}">${recipient.name}</option>`
-})
-
-
-export const LetterForm = () => {
+    }).join("")
+    
         
+    
+    const recipientsHTML = recipients.map(recipient => {
+        return `<option name="recipient" value="${recipient.id}">${recipient.name}</option>`
+    })
+    
         let html = `
         <div class="field">
         <label class="label" for="authorSelection">Choose an Author</label>
-        <select class="authorSelection" id="authors">
-        ${authorsHTML}
-        </select>
+        ${Authors()}
         </div>
         <div class="field letter__field">
         <label class="label" for="letterText">Write Your Letter</label>
