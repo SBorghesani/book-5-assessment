@@ -1,0 +1,18 @@
+#letterField {
+    height: 200px;
+    width: 350px;
+}
+
+.letter__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.topics {
+    display: flex;
+    padding-left: 0;
+}
+
+.topic {
+    display: flex;
+}
