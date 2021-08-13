@@ -1,6 +1,31 @@
-import { getAuthors, getRecipients, getTopics } from "./dataAccess.js"
+import { getAuthors, getRecipients, getTopics, sendLetter } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener(
+    "click",
+    clickEvent => {
+        if (clickEvent.target.id === "sendLetter") {
+            const UserAuthorName = document.querySelector("option[name='author']").value
+            const UserLetter = document.querySelector("textarea[name='letterText']")
+            const UserTopic = document.querySelector("input[name='topic']").value
+            const UserRecipient = document.querySelector("option[name='recipient']").value
+
+            const dataToSendToAPI = {
+                authorName: UserAuthorName,
+                letter: UserLetter,
+                topic: UserTopic,
+                recipient: UserRecipient,
+                date: Date.now()
+            }
+            sendLetter(dataToSendToAPI)
+        }
+    }
+)
+
+
+
+
 const authors = getAuthors()
 const topics = getTopics()
 const recipients = getRecipients()
@@ -15,11 +40,11 @@ const topicOptionsHTML = topics.map(topic => {
 }).join("")
 
 const authorsHTML = authors.map(author => {
-    return `<option value="${author.id}">${author.name}</option>`
+    return `<option name="author" value="${author.id}">${author.name}</option>`
 })
 
 const recipientsHTML = recipients.map(recipient => {
-    return `<option value="${recipient.id}">${recipient.name}</option>`
+    return `<option name="recipient" value="${recipient.id}">${recipient.name}</option>`
 })
 
 
