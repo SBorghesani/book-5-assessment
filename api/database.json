@@ -66,5 +66,22 @@
       "typeOfTopic": "Condolences"
     }
   ],
-  "sentLetters": []
+  "sentLetters": [
+    {
+      "authorName": "George Orwell",
+      "letter": "2021 is the new 1984. Oceania is at war with Eurasia again...",
+      "topic": "Business",
+      "recipient": "Stefan Borghesani",
+      "date": 1629141971444,
+      "id": 1
+    },
+    {
+      "authorName": "Kurt Vonnegut",
+      "letter": "Happiness by the Kilowatt",
+      "topic": "Condolences",
+      "recipient": "Blake Rhoden",
+      "date": 1629142877012,
+      "id": 2
+    }
+  ]
 }

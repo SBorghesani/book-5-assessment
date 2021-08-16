@@ -16,3 +16,33 @@
 .topic {
     display: flex;
 }
+
+.letterTextDisplay {
+    padding: 1em, 0, 1em, 0;
+}
+
+.letters__display {
+    /* display: flex;
+    flex-direction: column; */
+    padding-left: 0;
+}
+
+.letters__displayed {
+    border-style: double;
+    background-color: aqua;
+    margin: 5px;
+}
+
+.indi__letter {
+    padding: 5px;
+}
+
+.topic__display {
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid blue;
+    background-color: rgb(24, 117, 223);
+    width: 6em;
+    border-radius: 50%;
+    margin: 0;
+}

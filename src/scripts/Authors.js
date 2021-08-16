@@ -1,13 +1,13 @@
 import { getAuthors } from "./dataAccess.js"
 
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.name === "author") {
+// document.addEventListener(
+//     "change",
+//     (event) => {
+//         if (event.target.name === "author") {
 
-        }
-    }
-    )
+//         }
+//     }
+//     )
 
 
 
@@ -17,7 +17,7 @@ export const Authors = () => {
     const authors = getAuthors()
     const authorsHTML =  `
     
-    <select class="authorSelection" id="authors">
+    <select name="authorSelection" class="authorSelection" id="authors">
     <option value="">Choose</option>
     ${
         authors.map(author => {

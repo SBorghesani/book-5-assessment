@@ -12,16 +12,17 @@ mainContainer.addEventListener(
 
 const renderHTML = () => {
     fetchAuthors()
-    fetchLetters()
-    fetchRecipients()
-    fetchTopics()
     .then(
+        fetchLetters
+        ).then(
+            fetchTopics
+        ).then(
+            fetchRecipients
+        ).then(
         () => {
-
             mainContainer.innerHTML = PenPalSociety()
         }
     )
 
 }
-
 renderHTML()

@@ -7,10 +7,10 @@ mainContainer.addEventListener(
     "click",
     clickEvent => {
         if (clickEvent.target.id === "sendLetter") {
-            const UserAuthorName = document.querySelector("option[name='author']").value
+            const UserAuthorName = document.querySelector("select[name='authorSelection']").value
             const UserLetter = document.querySelector("textarea[name='letterText']").value
-            const UserTopic = document.querySelector("input[name='topic']").value
-            const UserRecipient = document.querySelector("option[name='recipient']").value
+            const UserTopic = document.querySelector("input[name='topic']:checked").value
+            const UserRecipient = document.querySelector("select[name='recipientSelection']").value
 
             const dataToSendToAPI = {
                 authorName: UserAuthorName,
@@ -37,7 +37,7 @@ export const LetterForm = () => {
         return `
         <ul class="topics ul--options">
         <li class="topic">
-        <input type="radio" name="topic" value="${topic.id}"/>${topic.typeOfTopic}
+        <input type="checkbox" name="topic" value="${topic.typeOfTopic}"/>${topic.typeOfTopic}
         </li>
         `
     }).join("")
@@ -45,7 +45,7 @@ export const LetterForm = () => {
         
     
     const recipientsHTML = recipients.map(recipient => {
-        return `<option name="recipient" value="${recipient.id}">${recipient.name}</option>`
+        return `<option name="recipient" value="${recipient.name}">${recipient.name}</option>`
     })
     
         let html = `
@@ -63,7 +63,7 @@ export const LetterForm = () => {
         </div>
         <div class="field">
         <label class="label" for="recipientSelection">Choose a Recipient</label>
-        <select class="recipientSelection" id="recipients">
+        <select name="recipientSelection" class="recipientSelection" id="recipients">
         ${recipientsHTML}
         </select>
         </div>
