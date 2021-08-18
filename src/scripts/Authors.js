@@ -1,16 +1,5 @@
 import { getAuthors } from "./dataAccess.js"
 
-// document.addEventListener(
-//     "change",
-//     (event) => {
-//         if (event.target.name === "author") {
-
-//         }
-//     }
-//     )
-
-
-
 
 export const Authors = () => {
 

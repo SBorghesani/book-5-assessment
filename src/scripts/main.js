@@ -1,5 +1,5 @@
+import { fetchAuthors, fetchLetters, fetchRecipients, fetchTopics, fetchUserTopics } from "./dataAccess.js"
 import { PenPalSociety } from "./PenPalSociety.js"
-import { fetchAuthors, fetchLetters, fetchRecipients, fetchTopics } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container")
 
@@ -13,9 +13,11 @@ mainContainer.addEventListener(
 const renderHTML = () => {
     fetchAuthors()
     .then(
-        fetchLetters
+        fetchTopics
         ).then(
-            fetchTopics
+            fetchLetters
+        ).then(
+            fetchUserTopics
         ).then(
             fetchRecipients
         ).then(

@@ -7,12 +7,11 @@ const applicationState = {
     authors: [],
     letters: [],
     recipients: [],
+    //chosenTopics will need id, letterId, topicid
+    chosenTopics: [],
     topics: [],
     sentLetters: []
 }
-console.log(applicationState)
-console.log(applicationState.authors)
-
 
 
 export const getAuthors = () => {
@@ -35,6 +34,10 @@ export const getLetters = () => {
     // return [...applicationState.sentLetters]
 }
 
+export const getUserTopics = () => {
+    return applicationState.chosenTopics.map(chosen => ({...chosen}))
+}
+
 export const setAuthor = (id) => applicationState.state.authorName = id
 
 export const fetchLetters = () => {
@@ -43,6 +46,16 @@ export const fetchLetters = () => {
         .then(
             (sendLetter) => {
                 applicationState.sentLetters = sendLetter
+            }
+        )
+}
+
+export const fetchUserTopics = () => {
+    return fetch (`${API}/chosenTopics`)
+        .then(response => response.json())
+        .then(
+            (chosenTopic) => {
+                applicationState.chosenTopics = chosenTopic
             }
         )
 }
@@ -94,6 +107,22 @@ export const sendLetter = (userLetterRequest) => {
         })
 }
 
+export const sendTopics = (userTopicChoices) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userTopicChoices)
+    }
+
+    return fetch(`${API}/chosenTopics`, fetchOptions)
+        .then(response => response.json())
+        .then (() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+
 export const deleteLetter = (id) => {
     return fetch(`${API}/sentLetters/${id}`, { method: "DELETE" })
         .then(
@@ -103,5 +132,11 @@ export const deleteLetter = (id) => {
         )
 }
 
+// export const addTopics = () => {
+//     const newTopic = {...applicationState.chosenTopics}
+//     const lastIndex = applicationState.sentLetters.length -1
+//     newTopic.letterId = applicationState.sentLetters[lastIndex].id +1
 
+//     applicationState.chosenTopics.push
+// }
 

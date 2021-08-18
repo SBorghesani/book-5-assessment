@@ -1,6 +1,6 @@
 #letterField {
     height: 200px;
-    width: 350px;
+    width: 550px;
 }
 
 .letter__field {
@@ -28,6 +28,8 @@
 }
 
 .letters__displayed {
+    display: flex;
+    flex-direction: column;
     border-style: double;
     background-color: aqua;
     margin: 5px;
@@ -45,4 +47,13 @@
     width: 6em;
     border-radius: 50%;
     margin: 0;
+}
+
+.letter__delete {
+    margin-left: 75%;
+}
+
+.sentLetters {
+    max-width: 50%;
+    min-width: 20em;
 }

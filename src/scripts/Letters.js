@@ -1,5 +1,5 @@
-import { deleteLetter, getAuthors, getLetters, getRecipients } from "./dataAccess.js"
-
+import { deleteLetter, getAuthors, getLetters, getRecipients, getUserTopics } from "./dataAccess.js"
+import { UserChosenTopics } from "./Topics.js"
 
 const mainContainer = document.querySelector("#container")
 
@@ -34,6 +34,22 @@ const listedLetters = (letter) => {
             }
         }
     }
+
+    const foundTopics = () => {
+        const letters = getLetters()
+        const userTopics = getUserTopics()
+
+        for (const userTopic of userTopics) {
+            for (const letter of letters) {
+                if (letter.id === userTopic.letterId) {
+                 
+                     return `<div>${userTopic.topicType}</div>`
+                    
+                }
+            }
+        }
+        
+    }
     return `
         <div class="letters__displayed">
             <ul class="letters__display">
@@ -51,15 +67,16 @@ const listedLetters = (letter) => {
             </li>
 
             </ul>
+
             <div class="topic__display">
-            ${letter.topic}
+            ${foundTopics()}
             </div>
             
             <button class="letter__delete" id="letter--${letter.id}">
             delete
             </button>
-        </div>
-    `
+            </div>
+            `
 }
 
 export const Letters = () => {
